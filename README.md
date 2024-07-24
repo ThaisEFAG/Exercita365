@@ -28,7 +28,7 @@ PostgreSQL instalado e configurado
 
 ## Endpoints Principais
 
-  ### Autenticação
+     ### Autenticação
 
 - Autenticação do usuário.
 - Registro de um novo usuário
