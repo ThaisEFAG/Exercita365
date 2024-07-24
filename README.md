@@ -33,7 +33,7 @@ PostgreSQL instalado e configurado
 - Autenticação do usuário.
 - Registro de um novo usuário
 
-### Locais
+ ### Locais
 
 - GET/: Lista todos os loais.
 - GET/:id: Obtém detalhes de um local específico.
