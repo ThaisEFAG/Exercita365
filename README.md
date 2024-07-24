@@ -2,7 +2,8 @@
 
 Este projeto é uma API desenvolvida com Node.js que utiliza Sequelize para ORM, JWT para autenticação, Express para o framework de servidor e PostgreSQL como banco de dados.
 
-Tecnologias Utilizadas
+###Tecnologias Utilizadas
+
 Node.js: Ambiente de execução para JavaScript no servidor.
 JavaScript: Linguagem de programação utilizada.
 Sequelize: ORM para Node.js que facilita a interação com o banco de dados.
