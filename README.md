@@ -15,15 +15,15 @@ Este projeto é uma API desenvolvida com Node.js que utiliza Sequelize para ORM,
 ## Requisitos
 Node.js instalado
 PostgreSQL instalado e configurado
-
+ 
 ## Configuração do Projeto
-    **Clone o repositório**
-    **Instalação de dependências**
-    **Configuração do Banco de Dados**
+    1. Clone o repositório
+    2. Instalação de dependências
+    3. Configuração do Banco de Dados
         Configuração do arquivo .env de acordo com o arquivo do repositório '.env_exemple'
-    **Execucute as migrações**
+    4. Execucute as migrações
         npx sequelize db:migrate
-    **Inicie o servidor**
+    5. Inicie o servidor
 
 
 ## Endpoints Principais
