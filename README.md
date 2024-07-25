@@ -42,3 +42,8 @@ PostgreSQL instalado e configurado
 
 ## Autenticação
 A API utiliza JWT para autenticação.
+
+### Relacionamento das tabelas
+
+![image](https://github.com/user-attachments/assets/ed5c61d4-2fa2-4579-90f9-ba82956a2980)
+
