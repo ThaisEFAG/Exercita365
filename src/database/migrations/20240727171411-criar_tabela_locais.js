@@ -38,10 +38,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      estado_endereco: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
       cep_endereco: {
         type: Sequelize.STRING,
         allowNull: true,
