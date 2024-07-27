@@ -9,7 +9,7 @@ module.exports = {
       id: {
         autoIncrement: true,
         primaryKey: true,
-        type: Seuquelize.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
       nome: {
@@ -21,7 +21,7 @@ module.exports = {
         allowNull: false,
       },
       cpf: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(14),
         allowNull: false,
       },
       endereco: {
@@ -29,7 +29,7 @@ module.exports = {
         allowNull: true,
       },
       email: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(50),
         allowNull: false,
         unique: true,
       },
@@ -38,7 +38,7 @@ module.exports = {
         allowNull: false,
       },
       data_nascimento: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(10),
         allowNull: true,
       },
       createdAt: {
@@ -46,6 +46,10 @@ module.exports = {
         type: Sequelize.DATE,
       },
       updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+      deletedAt: {
         allowNull: false,
         type: Sequelize.DATE,
       },
