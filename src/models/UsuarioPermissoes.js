@@ -19,3 +19,5 @@ UsuarioPermissoes = connection.define("usuarios_permissoes", {
     },
   },
 });
+
+module.export = UsuarioPermissoes;
