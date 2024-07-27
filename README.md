@@ -45,7 +45,7 @@ A API utiliza JWT para autenticação.
 
 ### Relacionamento das tabelas
 
-![image](https://github.com/user-attachments/assets/ed5c61d4-2fa2-4579-90f9-ba82956a2980)
+![image](https://github.com/user-attachments/assets/d25edc00-d7ca-482a-a8d1-604272e4a1c6)
 
 
 
