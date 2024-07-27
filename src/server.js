@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const routes = require("./routes.views/routes");
-const connection = require("./database/database");
+const connection = require("./database/connection");
 const APP_PORT = process.env.APP_PORT;
 
 class Server {
@@ -9,7 +9,7 @@ class Server {
     this.middlewares(server);
     this.database();
     server.use(routes);
-    this.initializerServer(server);
+    this.initializeServer(server);
   }
 
   async middlewares(server) {
