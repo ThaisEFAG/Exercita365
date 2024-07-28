@@ -2,7 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const routes = require("./routes.views/routes");
 const connection = require("./database/connection");
-const APP_PORT = process.env.APP_PORT;
+const APP_PORT = process.env.APP_PORT || 3000;
+console.log(APP_PORT);
 
 class Server {
   constructor(server = express()) {
