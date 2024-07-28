@@ -2,6 +2,7 @@ const { Router } = require("express");
 const usuariosRoutes = require("./usuarios.routes");
 // const LoginController = require("../controller/LoginController");
 const loginRoutes = require("./login.routes");
+const validaToken = require("../middlewares/validaToken");
 
 const routes = new Router();
 
