@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const { connection } = require("../database/connection");
+const connection = require("../database/connection");
 
 const Locais = connection.define("locais", {
   nome_local: {
