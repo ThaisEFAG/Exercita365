@@ -17,19 +17,20 @@ class LocaisController {
 
   async deletar(request, response) {
     try {
-      const dados = request.params.id;
+      const id = request.params.id;
       const local = await Locais.findByPk(id);
 
       if (!local) {
         return response
           .status(404)
           .json({ mensagem: "Cadastro de local não encontrado" });
+      } else {
+        await local.destroy();
+
+        return response.status(204).json();
       }
-
-      await local.destroy();
-
-      return response.status(204).json();
     } catch (error) {
+      console.log(error);
       response
         .status(500)
         .json({ mensagem: "Houve um erro ao deletar o local" });
@@ -39,29 +40,30 @@ class LocaisController {
   async atualizar(request, response) {
     try {
       const id = request.params.id;
-      const dados = dados.body;
+      const dados = request.body;
 
       const local = await Locais.findByPk(id);
 
       if (!local) {
         return response.status(404).json({ mensagem: "Local não encontrado" });
+      } else {
+        local.nome_local = dados.nome_local;
+        local.descricao = dados.descricao;
+        local.rua_endereco = dados.rua_endereco;
+        local.numero_endereco = dados.numero_endereco;
+        local.bairro_endereco = dados.bairro_endereco;
+        local.cidade_endereco = dados.cidade_endereco;
+        local.estado_endereco = dados.estado_endereco;
+        local.cep_endereco = dados.cep_endereco;
+        local.horario_funcionamento = dados.horario_funcionamento;
+        local.latitude = dados.latitude;
+        local.longitude = dados.longitude;
+        await local.save();
+
+        return response.json(local);
       }
-
-      local.nome_local = dados.nome_local;
-      local.descricao = dados.descricao;
-      local.rua_endereco = dados.rua_endereco;
-      local.numero_endereco = dados.numero_endereco;
-      local.bairro_endereco = dados.bairro_endereco;
-      local.cidade_endereco = dados.cidade_endereco;
-      local.estado_endereco = dados.estado_endereco;
-      local.cep_endereco = dados.cep_endereco;
-      local.horario_funcionamento = dados.horario_funcionamento;
-      local.latitude = dados.latitude;
-      local.longitude = dados.longitude;
-      await ConnectionRefusedError.save();
-
-      return response.json(local);
     } catch (error) {
+      console.log(error);
       return response.status(500).json({ mensagem: "Erro ao atualizar local" });
     }
   }
@@ -93,8 +95,9 @@ class LocaisController {
         return response
           .status(404)
           .json({ mensagem: "Não existe locais cadastrados" });
+      } else {
+        return response.json(local);
       }
-      return response.json(local);
     } catch (error) {
       console.log(error);
       response.status(500).json({ mensagem: "Erro ao listar locais" });
@@ -119,10 +122,12 @@ class LocaisController {
   async listaParametro(request, response) {
     try {
       const { nome_local } = request.query;
+      const { descricao } = request.query;
 
       const local = await Locais.findAll({
         where: {
           nome_local: nome_local,
+          descricao: descricao,
         },
       });
 
@@ -130,7 +135,7 @@ class LocaisController {
     } catch (error) {
       return response
         .status(500)
-        .json({ mensagem: "Erro ao listar pos parametro" });
+        .json({ mensagem: "Erro ao listar por parametro" });
     }
   }
 }
