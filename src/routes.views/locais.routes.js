@@ -8,6 +8,6 @@ locaisRoutes.get("/", LocalController.listarTodos);
 locaisRoutes.get("/:id", LocalController.listarUm);
 locaisRoutes.put("/:id", LocalController.atualizar);
 locaisRoutes.delete("/:id", LocalController.deletar);
-locaisRoutes.get("/", LocalController.listaParametro);
+// locaisRoutes.get("/", LocalController.listaParametro);
 
 module.exports = locaisRoutes;

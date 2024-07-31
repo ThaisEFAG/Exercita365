@@ -5,6 +5,25 @@ class LocaisController {
     try {
       const dados = request.body;
 
+      if (!dados.nome_local || !dados.cep_endereco) {
+        return response
+          .status(400)
+          .json({ mensagem: "Nome do local e CEP são obrigatórios" });
+      }
+
+      const possuiCadastroLocal = await Locais.findOne({
+        where: {
+          nome_local: dados.nome_local,
+          cep_endereco: dados.cep_endereco,
+        },
+      });
+
+      if (possuiCadastroLocal) {
+        return response.status(409).json({
+          mensagem: "Local já cadastrado",
+        });
+      }
+
       const local = await Locais.create(dados);
       return response.status(201).json(local);
     } catch (error) {
@@ -18,16 +37,22 @@ class LocaisController {
   async deletar(request, response) {
     try {
       const id = request.params.id;
+
       const local = await Locais.findByPk(id);
 
-      if (!local) {
+      if (!local || local.id_usuario != usuario.id) {
         return response
           .status(404)
-          .json({ mensagem: "Cadastro de local não encontrado" });
+          .json({
+            mensagem:
+              "Cadastro de local não encontrado ou registro de local não pertence a esse usuário",
+          });
       } else {
         await local.destroy();
 
-        return response.status(204).json();
+        return response
+          .status(204)
+          .json({ mensagem: "Local deletado com sucesso" });
       }
     } catch (error) {
       console.log(error);
@@ -41,6 +66,12 @@ class LocaisController {
     try {
       const id = request.params.id;
       const dados = request.body;
+
+      if (!dados.nome_local || !dados.cep_endereco) {
+        return response
+          .status(400)
+          .json({ mensagem: "Nome e CEP são obrigatórios" });
+      }
 
       const local = await Locais.findByPk(id);
 
@@ -119,25 +150,24 @@ class LocaisController {
     }
   }
 
-  async listaParametro(request, response) {
-    try {
-      const { nome_local } = request.query;
-      const { descricao } = request.query;
+  // async listaParametro(request, response) {
+  //   try {
+  //     const { nome_local } = request.query;
 
-      const local = await Locais.findAll({
-        where: {
-          nome_local: nome_local,
-          descricao: descricao,
-        },
-      });
+  //     const local = await Locais.findAll({
+  //       where: {
+  //         nome_local: nome_local,
+  //       },
+  //     });
 
-      return response.json(local);
-    } catch (error) {
-      return response
-        .status(500)
-        .json({ mensagem: "Erro ao listar por parametro" });
-    }
-  }
+  //     return response.json(local);
+  //   } catch (error) {
+  //     console.log(error);
+  //     return response
+  //       .status(500)
+  //       .json({ mensagem: "Erro ao listar por parametro" });
+  //   }
+  // }
 }
 
 module.exports = new LocaisController();
