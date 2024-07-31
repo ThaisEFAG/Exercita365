@@ -6,6 +6,10 @@ const Locais = connection.define("locais", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  descricao: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
   rua_endereco: {
     type: DataTypes.STRING(90),
     allowNull: true,
@@ -23,10 +27,14 @@ const Locais = connection.define("locais", {
     allowNull: true,
   },
   estado_endereco: {
-    type: DataType.STRING,
+    type: DataTypes.STRING,
     allowNull: true,
   },
   cep_endereco: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  horario_funcionamento: {
     type: DataTypes.STRING,
     allowNull: true,
   },
