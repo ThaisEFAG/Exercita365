@@ -47,6 +47,15 @@ A API utiliza JWT para autenticação.
 
 ![image](https://github.com/user-attachments/assets/d25edc00-d7ca-482a-a8d1-604272e4a1c6)
 
+### O que pode ser otimizado?
+- Adicionar uma tabela de categorias de usuários para melhor gestão das permissoes.
+  
+  ![image](https://github.com/user-attachments/assets/cbf60615-f090-4fc6-9b86-a772f01fabc0)
+
+
+
+
+
 
 
 ## by
