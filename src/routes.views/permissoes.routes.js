@@ -1,4 +1,4 @@
-const { Routes } = require("express");
+const { Router } = require("express");
 const PermissoesController = require("../controller/PermissoesController");
 
 const permissoesRoutes = new Router();

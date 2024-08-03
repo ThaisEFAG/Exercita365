@@ -1,4 +1,4 @@
-const permissoes = require("../models/Permissoes");
+const Permissoes = require("../models/Permissoes");
 const Usuario = require("../models/Usuario");
 
 const verificarPermissao = (permissoesRequeridas) => {

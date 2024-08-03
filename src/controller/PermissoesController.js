@@ -4,13 +4,35 @@ const Usuario = require("../models/Usuario");
 class PermissoesController {
   async cadastrar(request, response) {
     try {
-      const descricao = request.body;
+      const dados = request.body;
 
-      const permissao = await Permissoes.create(descricao);
-      response(201).json(permissao);
+      if (!dados) {
+        response
+          .status(400)
+          .json({ mensagem: "Descrição da permissão é obrigatória" });
+      }
+
+      // const permissaoExistente = await Permissoes.findOne({
+      //   were: {
+      //     descricao: dados.descricao,
+      //   },
+      // });
+
+      // if (permissaoExistente) {
+      //   response.status(409).json({ mensagem: "Permissão já está cadastrada" });
+      // }
+
+      const permissao = await Permissoes.create({
+        descricao: dados.descricao,
+      });
+      response.status(201).json({
+        descricao: permissao.descricao,
+      });
     } catch (error) {
       console.log(error);
-      response(500).json({ mensagem: "Houve um erro ao cadastrar permissao" });
+      response
+        .status(500)
+        .json({ mensagem: "Houve um erro ao cadastrar permissao" });
     }
   }
 
@@ -20,11 +42,13 @@ class PermissoesController {
       const permissao = await Permissoes.findByPk(id);
 
       if (!permissao) {
-        response.status(404).json("Permissao não encontrada");
+        response.status(404).json({ mensagem: "Permissao não encontrada" });
+      } else {
+        await permissao.destroy();
+        response
+          .status(204)
+          .json({ mensagem: "Permissao deletada com sucesso" });
       }
-
-      await permissao.destroy();
-      response.status(204).json({ mensagem: "Permissao deletada com sucesso" });
     } catch (error) {
       console.log(error);
       response.status(500).json({ mensagem: "Erro ao deletar permissao" });
@@ -33,8 +57,20 @@ class PermissoesController {
 
   async listarTodos(request, response) {
     try {
-      const permissoes = await Permissao.findAll();
-      response.json(permissoes);
+      const { descricao } = request.query;
+      const permissoes = await Permissoes.findAll({
+        were: descricao ? { descricao: descricao } : {},
+        attributes: [["id", "identificador"], "descricao"],
+        order: [["id", "DESC"]],
+      });
+
+      if (permissoes.length === 0) {
+        response
+          .status(404)
+          .json({ mensagem: "Não foram encontradas permissoes cadastradas" });
+      } else {
+        response.json(permissoes);
+      }
     } catch (error) {
       console.log(error);
       response.status(500).json({ mensagem: "Erro ao listar as permissões" });
