@@ -49,7 +49,7 @@ A API utiliza JWT para autenticação.
 
 ### O que pode ser otimizado?
 
-- A gestão das permissões, adicionando uma tabela de categorias de usuários.
+- A gestão das permissões, adicionando uma tabela de categorias de usuários. Ou poderiam ficar as duas formas de relacionamento no caso do cliente optar também por decidir as permissões de cada usuário individualmente.
   
   ![image](https://github.com/user-attachments/assets/cbf60615-f090-4fc6-9b86-a772f01fabc0)
 
