@@ -1,8 +1,9 @@
 const Locais = require("../models/Locais");
 
 class LocaisController {
-  async cadastroLocal(request, response) {
+  async cadastrarLocal(request, response) {
     try {
+      // response.status(201).json({mensagem: "criar"})
       const dados = request.body;
 
       if (!dados.nome_local || !dados.cep_endereco) {
@@ -41,12 +42,10 @@ class LocaisController {
       const local = await Locais.findByPk(id);
 
       if (!local || local.id_usuario != usuario.id) {
-        return response
-          .status(404)
-          .json({
-            mensagem:
-              "Cadastro de local não encontrado ou registro de local não pertence a esse usuário",
-          });
+        return response.status(404).json({
+          mensagem:
+            "Cadastro de local não encontrado ou registro de local não pertence a esse usuário",
+        });
       } else {
         await local.destroy();
 
@@ -104,6 +103,7 @@ class LocaisController {
       const { nome_local } = request.query;
 
       const local = await Locais.findAll({
+        order: [["nome_local", "ASC"]],
         where: nome_local ? { nome_local: nome_local } : {},
         attributes: [
           ["id", "identificador"],
@@ -119,7 +119,6 @@ class LocaisController {
           "latitude",
           "longitude",
         ],
-        order: [["nome_local", "ASC"]],
       });
 
       if (local.length === 0) {

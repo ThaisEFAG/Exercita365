@@ -3,6 +3,8 @@
 const { DataTypes } = require("sequelize");
 const connection = require("../database/connection");
 const { hashSync } = require("bcryptjs");
+const UsuarioPermissoes = require("./UsuarioPermissoes");
+const Permissoes = require("./Permissoes");
 
 const Usuario = connection.define("usuarios", {
   nome: {
@@ -27,6 +29,21 @@ const Usuario = connection.define("usuarios", {
     type: DataTypes.STRING,
   },
 });
+
+Usuario.belongsToMany(Permissoes, {
+  through: UsuarioPermissoes,
+  foreignKey: "usuarioId",
+  otherKey: "permissaoId",
+});
+
+// Usuario.associate = () => {
+// Usuario.belongsToMany(Permissoes, {
+//   through: UsuarioPermissoes,
+//   as: "usuarios",
+//   foreignKey: "usuarioId",
+// });
+
+// };
 
 Usuario.beforeSave((usuario) => {
   // objeto usuario: const capturada no controller, com o valor da propriedade password_hash
