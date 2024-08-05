@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const connection = require("../database/connection");
+const Usuario = require("./Usuario");
 
 const Locais = connection.define("locais", {
   nome_local: {
@@ -46,6 +47,15 @@ const Locais = connection.define("locais", {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  id_usuario: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+  },
+});
+
+Locais.belongsTo(Usuario, {
+  foreignKey: "id_usuario",
+  onDelete: "CASCADE",
 });
 
 module.exports = Locais;

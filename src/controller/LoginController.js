@@ -30,7 +30,7 @@ class LoginController {
 
       if (senhaCorreta === false) {
         return response
-          .status(404)
+          .status(401)
           .json({ mensagem: "Usuário ou senha inválido" });
       }
 

@@ -79,18 +79,22 @@ class PermissoesController {
 
   async atribuirPermissoes(request, response) {
     try {
-      const { usuarioId, permissoesId } = request.body;
+      const { usuarioId, permissaoId } = request.body;
+
+      console.log("usuarioId: ", usuarioId);
+      console.log("permissaoId: ", permissaoId);
 
       const usuario = await Usuario.findByPk(usuarioId);
-      const permissao = await Permossoes.findByPk(permissoesId);
+      const permissao = await Permissoes.findByPk(permissaoId);
 
       if (!usuario || !permissao) {
-        response
+        return response
           .status(404)
           .json({ mensagem: "Usuário ou permissão não encontrados" });
       }
 
-      await usuario.addPermissoes(permissao);
+      await usuario.addPermissao(permissao);
+      // await permissoes.addUsuario(usuarios);
 
       response.status(204).json();
     } catch (error) {
