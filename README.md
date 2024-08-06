@@ -42,3 +42,22 @@ PostgreSQL instalado e configurado
 
 ## Autenticação
 A API utiliza JWT para autenticação.
+
+### Relacionamento das tabelas
+
+![image](https://github.com/user-attachments/assets/d25edc00-d7ca-482a-a8d1-604272e4a1c6)
+
+### O que pode ser otimizado?
+
+- A gestão das permissões, adicionando uma tabela de categorias de usuários. Ou poderiam ficar as duas formas de relacionamento no caso do cliente optar também por decidir as permissões de cada usuário individualmente.
+  
+  ![image](https://github.com/user-attachments/assets/cbf60615-f090-4fc6-9b86-a772f01fabc0)
+
+
+
+
+
+
+
+## by
+### Thaís Elaine Farias Alves Gonçalves
