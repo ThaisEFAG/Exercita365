@@ -10,6 +10,7 @@ Este projeto é uma API desenvolvida com Node.js que utiliza Sequelize para ORM,
 - JWT (JSON Web Token): Técnica de autenticação e autorização baseada em tokens.
 - Express: Framework web para Node.js.
 - PostgreSQL: Sistema de gerenciamento de banco de dados relacional.
+- Swagger
 
 
 ## Requisitos
